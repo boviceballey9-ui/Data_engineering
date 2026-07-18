@@ -2,13 +2,14 @@ import pandas as pd
 import psycopg2
 import os
 
+
 conn = psycopg2.connect(
     host = "localhost",
     port = "5432",
     dbname = "airbyte_destination_pharm",
     user = "airbyte_bovice_pg",
     #password = os.environ.get("DB_PASSWORD")
-    password = "Ravis@2001"
+    password = os.environ.get("DB_PASSWORD")
 ) 
 query = """
 SELECT nom_medicament,

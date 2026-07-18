@@ -1,8 +1,12 @@
+import os
+from dotenv import load_dotenv
 import pandas as pd
 import logging
 import argparse
 from sqlalchemy import create_engine
 from sqlalchemy.engine import URL
+
+load_dotenv()
 
 ## Configuration du logging
 logging.basicConfig(
@@ -17,7 +21,7 @@ def verifier_stock(seuil: int = 50):
     url = URL.create(
         drivername = "postgresql+psycopg2",
         username   = "airbyte_bovice_pg",
-        password   = "Ravis@2001",
+        password   = os.environ.get("DB_PASSWORD"),
         host       = "localhost",
         port       = 5432,
         database   = "airbyte_destination_pharm"
